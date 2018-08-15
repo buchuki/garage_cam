@@ -1,0 +1,5 @@
+config.py
+.python-version
+__pycache__
+data
+*.mp4

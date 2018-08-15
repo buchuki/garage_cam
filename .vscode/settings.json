@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "/home/dusty/.pyenv/versions/garage_cam/bin/python",
+    "editor.tabSize": 4,
+    "python.linting.flake8Args": [
+        "--max-line-length",
+        "100"
+    ],
+}

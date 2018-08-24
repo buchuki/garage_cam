@@ -6,6 +6,7 @@ from pathlib import Path
 from util import make_video_of_files
 from manual_classifier import classify
 from learning import train, predict_command as predict
+from verifier import verify
 from send_message_service import message_loop
 
 
@@ -60,6 +61,12 @@ def main():
         help="Start service that sends an IFTTT message when door status changes",
     )
     message_service_parser.set_defaults(func=message_loop)
+
+    verify_parser = subparsers.add_parser(
+        "verify",
+        help="Split available classified images in half and compare expected to manual results",
+    )
+    verify_parser.set_defaults(func=verify)
 
     args = parser.parse_args()
     config.options = args

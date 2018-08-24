@@ -20,14 +20,15 @@ def normalize_to_vector(image_frame):
     return sample_vector[:, 0]
 
 
-def train():
+def train(classification_rows=None, param_filename="svm_trained.joblib"):
     data_dir = config.options.data_dir
     classification_file = data_dir / "classifications.csv"
-    training_parameters_file = data_dir / "svm_trained.joblib"
+    training_parameters_file = data_dir / param_filename
 
-    classification_rows = pandas.read_csv(
-        classification_file, header=None, names=["name", "class"]
-    )
+    if classification_rows is None:
+        classification_rows = pandas.read_csv(
+            classification_file, header=None, names=["name", "class"]
+        )
 
     classifications = {}
 
@@ -67,9 +68,9 @@ def predict_command():
     print(f"{image_path.name}: {predict(image_path)}")
 
 
-def predict(image_path):
+def predict(image_path, param_filename="svm_trained.joblib"):
     data_dir = config.options.data_dir
-    training_parameters_file = data_dir / "svm_trained.joblib"
+    training_parameters_file = data_dir / param_filename
 
     cv2_image = cv2.imread(str(image_path))
 

@@ -57,7 +57,9 @@ def message_loop():
 
             if current_status != last_status:
                 last_change = image_date(last_image)
-                print(f"Status changed to {current_status}")
+                print(
+                    f"Status changed to {current_status} at {datetime.datetime.now():%Y-%m-%d %H:%M}"
+                )
                 send_message(current_status)
             last_status = current_status
 
